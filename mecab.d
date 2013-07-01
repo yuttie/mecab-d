@@ -14,8 +14,8 @@ alias MECAB_EON_NODE EON_NODE;
 struct Node {
     private mecab_node_t* node_;
 
-    @property const(char)[] surface() pure { return node_.surface[0..node_.length]; }
-    @property const(char)[] feature() pure { return "";/*node_.feature;*/ }
+    @property string surface() pure { return node_.surface[0..node_.length].idup; }
+    @property string feature() pure { return "";/*node_.feature;*/ }
     @property uint   id()        pure { return node_.id; }
     @property ushort length()    pure { return node_.length; }
     @property ushort rlength()   pure { return node_.rlength; }
