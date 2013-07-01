@@ -43,6 +43,10 @@ struct ParsedNodes {
         node_ = mecab_sparse_tonode(mecab_, str_);
     }
 
+    ~this() {
+        mecab_destroy(mecab_);
+    }
+
     @property bool empty() const { return !node_; }
     Range opSlice() { return Range(node_); }
     @property Node front() { return Node(node_); }
