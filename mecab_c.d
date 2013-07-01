@@ -47,6 +47,7 @@ enum {
 
 extern(C) {
     mecab_t* mecab_new(int argc, char** argv);
+    void mecab_destroy(mecab_t* mecab);
     mecab_node_t* mecab_sparse_tonode(mecab_t* mecab, const(char)* str);
     mecab_node_t* mecab_sparse_tonode2(mecab_t* mecab, const(char)* str, size_t len);
 }
