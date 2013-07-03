@@ -1,5 +1,7 @@
 module mecab;
 
+import std.algorithm;
+import std.array;
 import std.string;
 
 import mecab_c;
@@ -15,7 +17,11 @@ struct Node {
     private mecab_node_t* node_;
 
     @property string surface() pure { return node_.surface[0..node_.length].idup; }
-    @property string feature() pure { return "";/*node_.feature;*/ }
+    @property string[] feature() {
+        uint n = 0;
+        while (node_.feature[n] != '\0') ++n;
+        return splitter(node_.feature[0..n].idup, ',').array;
+    }
     @property uint   id()        pure { return node_.id; }
     @property ushort length()    pure { return node_.length; }
     @property ushort rlength()   pure { return node_.rlength; }
